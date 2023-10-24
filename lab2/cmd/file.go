@@ -9,7 +9,7 @@ import (
 func findKthLargest(nums []int, k int) int {
 
 	sort.Sort(sort.Reverse(sort.IntSlice(nums))) // sort.Ints(nums) можно использовать прямую сортировку
-	fmt.Println(nums[k-1]) // fmt.Println(nums[len(nums)-k]) в случае прямой сортировки вывод такой
-	return 0
+	//fmt.Println(nums[k-1]) // fmt.Println(nums[len(nums)-k]) в случае прямой сортировки вывод такой
+	return nums[k-1]
 
 }
