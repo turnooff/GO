@@ -1,9 +1,5 @@
 package main
 
-import (
-	"sort"
-)
-
 func findKthLargest(nums []int, k int) int {
 	//sort.Sort(sort.Reverse(sort.IntSlice(nums))) // sort.Ints(nums) можно использовать прямую сортировку
 	//return nums[k-1] // nums[len(nums)-k] в случае прямой сортировки вывод такой
@@ -12,7 +8,7 @@ func findKthLargest(nums []int, k int) int {
 		//append(helpArr, nums[i])
 		helpArr[i] = nums[i]
 	}
-	for i := k; i < len(arr); i++ {
+	for i := k; i < len(nums); i++ {
 		for j := 0; j < k; j++ {
 			if nums[i] > helpArr[j] {
 				helpArr[j] = nums[i]
