@@ -1,10 +1,13 @@
 package main
 
-//import "sort"
 
 func findKthLargest(nums []int, k int) int {
-	//sort.Sort(sort.Reverse(sort.IntSlice(nums))) // sort.Ints(nums) можно использовать прямую сортировку
-	//return nums[k-1] // nums[len(nums)-k] в случае прямой сортировки вывод такой
+	
+	//Изначально использовал встроенную библиотеку sort
+	//sort.Sort(sort.Reverse(sort.IntSlice(nums)))
+	//return nums[k-1]
+	//но потом решил написать сортировку вручную
+
 	var gap, i int
 	for gap = len(nums) / 2; gap > 0; gap /= 2 {
 		for i = gap; i < len(nums); i++ {
