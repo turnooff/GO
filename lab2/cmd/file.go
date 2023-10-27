@@ -1,6 +1,6 @@
 package main
 
-func shellSort(arr []int) []int {
+func shellSort(nums []int) []int {
 	var gap, i int
 	for gap = len(nums) / 2; gap > 0; gap /= 2 {
 		for i = gap; i < len(nums); i++ {
@@ -12,7 +12,7 @@ func shellSort(arr []int) []int {
 			nums[j] = temp
 		}
 	}
-	return arr
+	return nums
 }
 
 func findKthLargest(nums []int, k int) int {
