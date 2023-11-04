@@ -1,0 +1,8 @@
+github.com/go-yaml/yaml v2.1.0+incompatible h1:RYi2hDdss1u4YE7GwixGzWwVo47T8UQwnTLB6vQiq+o=
+github.com/go-yaml/yaml v2.1.0+incompatible/go.mod h1:w2MrLa16VYP0jy6N7M5kHaCkaLENm+P+Tv+MfurjSw0=
+github.com/turnooff/searchStr v0.0.0-20231104141534-7a8bacc82d02 h1:CeJQmNLrnKVhMRC3IGoEvUUW1mLbKveDccHk8uQXCJY=
+github.com/turnooff/searchStr v0.0.0-20231104141534-7a8bacc82d02/go.mod h1:KHpPMs35D8t2tQGCOOzTXbU/TrETYhUyfd68QUpENy4=
+github.com/turnooff/searchStr v0.0.1 h1:HDSIPNEsqC5qPaY3FFSYu+4sobfns9lQNAtbq/relpw=
+github.com/turnooff/searchStr v0.0.1/go.mod h1:KHpPMs35D8t2tQGCOOzTXbU/TrETYhUyfd68QUpENy4=
+github.com/turnooff/searchStr v0.0.2 h1:q10WKTTNMT4aVhK2dLPCis4nsjLns+CyD+aJPxbiQOU=
+github.com/turnooff/searchStr v0.0.2/go.mod h1:KHpPMs35D8t2tQGCOOzTXbU/TrETYhUyfd68QUpENy4=
