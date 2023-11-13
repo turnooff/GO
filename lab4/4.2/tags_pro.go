@@ -3,6 +3,6 @@
 
 package main
 
-func initi() {
+func init() {
 	println("I made with tags, hooray")
 }
