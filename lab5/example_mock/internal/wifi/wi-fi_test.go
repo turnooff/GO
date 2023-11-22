@@ -5,11 +5,9 @@ import (
 	myWifi "example_mock/internal/wifi"
 	"fmt"
 	"net"
-	"reflect"
 	"testing"
 
 	"github.com/mdlayher/wifi"
-	//"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 )
 
@@ -40,9 +38,7 @@ func TestGetAddresses(t *testing.T) {
 			require.ErrorIs(t, err, row.errExpected, "row: %d, expected error: %w, actual error: %w", i, row.errExpected, err)
 			continue
 		}
-		if !reflect.DeepEqual(actualAddrs, parseMACs(row.addrs)) {
-			t.Errorf("expected names to be %v, got %v", actualAddrs, parseMACs(row.addrs))
-		}
+		require.Equal(t, parseMACs(row.addrs), actualAddrs)
 	}
 }
 
@@ -56,13 +52,7 @@ func TestGetNames(t *testing.T) {
 		t.Errorf("unexpected error: %v", err)
 	}
 	expectedNames := []string{"WiFiName1", "WiFiName2"}
-	if !reflect.DeepEqual(names, expectedNames) {
-		t.Errorf("expected names to be %v, got %v", expectedNames, names)
-	}
-	// _, err = myWifi.WiFi.Interfaces(mockWifi)
-	// if err != nil {
-	// 	t.Errorf("unexpected error: %v", err)
-	// }
+	require.Equal(t, names, expectedNames)
 }
 
 func TestNew(t *testing.T) {
