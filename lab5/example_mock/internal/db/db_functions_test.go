@@ -3,11 +3,10 @@ package dbfunctions_test
 import (
 	"database/sql"
 	"errors"
-	"reflect"
-
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/stretchr/testify/require"
 
 	db_functions "example_mock/internal/db"
 )
@@ -33,7 +32,7 @@ var testTableGetName = []struct {
 	},
 	{
 		nameTest:    "Error Test",
-		names:       []string{},
+		names:       nil,
 		errExpected: errors.New("the slice is empty"),
 	},
 }
@@ -58,17 +57,13 @@ func TestGetName(t *testing.T) {
 		mock.ExpectQuery("SELECT name FROM users").WillReturnRows(rows).WillReturnError(row.errExpected)
 
 		names, err := dbService.GetNames()
-		if err != nil {
-			t.Fatal(err, "in", row.nameTest)
-		}
-
 		if row.errExpected != nil {
-			t.Fatal(err, "in", row.nameTest)
+			require.ErrorIs(t, err, row.errExpected)
+			require.Nil(t, row.names)
+			continue
 		}
-
-		if !reflect.DeepEqual(names, row.names) {
-			t.Fatalf("expected names to be %v, got %v in %v", row.names, names, row.nameTest)
-		}
+		require.NoError(t, err, "error")
+		require.Equal(t, names, row.names)
 	}
 	if err := mock.ExpectationsWereMet(); err != nil {
 		t.Fatalf("there were unfulfilled expectations: %s", err)
@@ -103,7 +98,7 @@ var testTableSelectUniqueValues = []struct {
 		want:       nil,
 		wantErr:    true,
 		err:        sql.ErrNoRows,
-		rows:       sqlmock.NewRows([]string{"value"}),
+		rows:       nil,
 	},
 }
 
@@ -128,15 +123,15 @@ func TestSelectUniqueValues(t *testing.T) {
 		} else {
 			mock.ExpectQuery(query).WillReturnRows(row.rows)
 		}
+
 		got, err := dbService.SelectUniqueValues(row.columnName, row.tableName)
-		if err != nil {
-			t.Fatal(err, "in", row.nameTest)
-		}
-		if !reflect.DeepEqual(got, row.want) {
-			t.Fatalf("expected names to be %v, got %v in %v", row.want, got, row.nameTest)
+		if row.wantErr {
+			require.Error(t, row.err)
+		} else {
+			require.NoError(t, err)
+			require.Equal(t, row.want, got)
 		}
 	}
-
 	if err := mock.ExpectationsWereMet(); err != nil {
 		t.Fatalf("there were unfulfilled expectations: %s", err)
 	}
